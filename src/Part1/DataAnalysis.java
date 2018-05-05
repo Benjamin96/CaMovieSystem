@@ -19,7 +19,7 @@ public class DataAnalysis {
         HashTableGeneral<Movie> MovieHashTable = new HashTableGeneral();
         ArrayList < Movie > MovieList = new ArrayList();
         
-        String csvFile = "C:\\Users\\Ben\\Desktop\\Duo Ca\\MovieSystem\\samplemovies.csv";
+        String csvFile = "C:\\Users\\Ben\\Documents\\NetBeansProjects\\CaMovieSystemBen&Chris\\src\\Part1\\samplemovies.csv";
         String line = "";
         //Main Hash table for overview of Movies from CSV
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
