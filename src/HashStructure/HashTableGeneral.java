@@ -2,35 +2,35 @@ package HashStructure;
 
 
 import java.util.LinkedList;
-
+import Object.Movie;
 /**
  *
  * @author Ben
- * @param <V>
+ * @param <Movie>
  * 
  */
-public class HashTableGeneral<V>{
+public class HashTableGeneral{
  
     private int size;
 
-    private final LinkedList<V>[] data;
+    private final LinkedList<Movie>[] data;
     
     public HashTableGeneral(){
 
-        data = (LinkedList<V>[]) new LinkedList[10];
+        data = (LinkedList<Movie>[]) new LinkedList[11];
         
         size = 0;
     }
     
-    public V put(V value){
+    public Movie put(Movie value){
 
-        int hash = value.hashCode();
+        int hash = value.MyhashCode();
 
-        int destinationIndex = hash % data.length;
+        int destinationIndex = hash;
 
         if(data[destinationIndex] == null){
 
-            LinkedList<V> list = new LinkedList();
+            LinkedList<Movie> list = new LinkedList();
 
             list.add(value);
 
@@ -49,10 +49,11 @@ public class HashTableGeneral<V>{
         }
     }
     
-    public V get(V value){
-        int hash = Math.abs(value.hashCode());
+    public Movie get(Movie value){
+        int hash = value.MyhashCode();;
+        
 
-        int destinationIndex = hash % data.length;
+        int destinationIndex = hash;
         
         if(data[destinationIndex] != null){
                     System.out.println(" Movie found in slot " + destinationIndex);
@@ -61,20 +62,20 @@ public class HashTableGeneral<V>{
         return null;
     }
     
-    public int getCommonGenre(V value)
+    
+    public String DisplayCommonContents(int index)
     {
-        int hash = value.hashCode();
-        
-        int destinationIndex = hash % data.length;
-        
-        int CommonGenre = 0;
-
-          if(data[destinationIndex].size() > CommonGenre)
+        String Reponse = null;
+        int destinationIndex = index;
+        if(data[destinationIndex] != null){
+          for(int x = 0; x< data[destinationIndex].size(); x++)
           {
-            CommonGenre = destinationIndex;  
+            Reponse = Reponse + " Movies in Slot " + index + " = " + data[destinationIndex].get(x).toString() + "\n";
           }
-        
-        return CommonGenre;
+            
+        return Reponse;
+        }
+        return Reponse;
     }
     
     public int size(){

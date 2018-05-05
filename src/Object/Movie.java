@@ -53,14 +53,34 @@ public class Movie {
         this.Rating = Rating;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.Rating);
-        return hash;
+    public int MyhashCode() 
+    {
+        Double HashRate = Double.parseDouble(this.getRating());
+        int intHash = (int) Math.floor(HashRate);
+        return intHash;
     }
+    
+    public int MyhashCodeGenre(String[] Array)
+    {
+        for(int x = 0; x< Array.length; x++)
+        {
+            if(Array[x].equals(""))
+            {
+                Array[x] = this.getGenre();
+                return x;
+            }
+                
+            else if(Array[x].equals(this.getGenre()))
+            {
+                return x;
+            }
+        }
+        return 0;
+    }
+    
+    
 
-
+  
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
