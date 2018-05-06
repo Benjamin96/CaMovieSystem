@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
+
 
 
 /**
@@ -36,11 +36,13 @@ public class DataAnalysis {
                     }
 
             }
+             System.out.println("\n");
             System.out.println("--------Checking Find-------");
             for(int x = 0; x< MovieList.size(); x++)
                {
-                   System.out.println("= " + MovieHashTable.get(MovieList.get(x)));
+                   System.out.println("= " + MovieHashTable.get(MovieList.get(x)) + "\n");
                }
+            System.out.println("\n");
             System.out.println("-------Most Common Genre------");
             
             int Biggest = 0;
@@ -55,9 +57,22 @@ public class DataAnalysis {
                 }  
                }
               System.out.println("Most Common Genre = " + GenresHashTable.indexGenre[BiggestSlot]);
-              //System.out.println(GenresHashTable.DisplayCommonContents(Common));
-              
-              
+              System.out.println("\n");
+              GenresHashTable.DisplayCommonContents(BiggestSlot);
+             
+             System.out.println("\n");
+             System.out.println("-------Average score's------");
+             
+             for(int x = 0; x < GenresHashTable.indexGenre.length; x++)
+             {
+             String Genre = GenresHashTable.indexGenre[x];
+             
+             System.out.println(GenresHashTable.GenreAverage(Genre));
+             }
+            
+             System.out.println("\n");
+             System.out.println("-------Movies in a particular genre (in order of their score)------");
+             
         } catch (IOException e) {
         }
     }

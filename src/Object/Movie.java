@@ -107,6 +107,25 @@ public class Movie {
         }
         return true;
     }
+    
+    public int compareTo(Movie o) {
+        
+        String title = o.getTitle();
+        if(this.Title.equals(title))
+        {
+            return 0;
+        }
+        else if(this.Title.compareTo(title) < 1)
+        {
+            return -1;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    
+    
 
     @Override
     public String toString() {

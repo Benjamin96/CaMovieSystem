@@ -56,7 +56,7 @@ public class HashTableGeneral{
         int destinationIndex = hash;
         
         if(data[destinationIndex] != null){
-                    System.out.println(" Movie found in slot " + destinationIndex);
+                    System.out.println(" Movie found in slot " + destinationIndex +  "\n");
                     return value;    
         }
         return null;

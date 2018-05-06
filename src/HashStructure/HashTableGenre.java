@@ -1,6 +1,7 @@
 package HashStructure;
 
 import Object.Movie;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -13,11 +14,13 @@ public class HashTableGenre {
 
     public final LinkedList<Movie>[] datagenre;
     
-    public final String[] indexGenre = new String[1000];;
+    public final String[] indexGenre = new String[13];
+    
+    public final ArrayList<String> noRepeatsCommon = new ArrayList();
     
     public HashTableGenre(){
 
-        datagenre = (LinkedList<Movie>[]) new LinkedList[1000];
+        datagenre = (LinkedList<Movie>[]) new LinkedList[41];
         for(int x =0; x < indexGenre.length; x++)
         {
             indexGenre[x] = "";
@@ -39,7 +42,7 @@ public class HashTableGenre {
             list.add(value);
 
             datagenre[destinationIndex] = list;
-            System.out.println(" Genres stored in slot " + destinationIndex);
+            System.out.println(" Genres stored in slot " + destinationIndex) ;
             
             size++;
 
@@ -60,25 +63,65 @@ public class HashTableGenre {
         int destinationIndex = hash;
         
         if(datagenre[destinationIndex] != null){
-                    System.out.println(" Genre found in slot " + destinationIndex);
+                    System.out.println(" Genre found in slot " + destinationIndex +  "\n");
                     return value;    
         }
         return null;
     }
     
-    public String DisplayCommonContents(int index)
+        public Movie Displayget(Movie value){
+        int hash = value.MyhashCodeGenre(indexGenre);
+        
+
+        int destinationIndex = hash;
+        
+        if(datagenre[destinationIndex] != null){
+                    System.out.println(destinationIndex +  "\n");
+                    return value;    
+        }
+        return null;
+    }
+    
+    public void DisplayCommonContents(int index)
     {
-        String Reponse = null;
         int destinationIndex = index;
         if(datagenre[destinationIndex] != null){
           for(int x = 0; x< datagenre[destinationIndex].size(); x++)
           {
-            Reponse = Reponse + " Movies in Slot " + index + " = " + datagenre[destinationIndex].get(x).toString() + "\n";
+            if(!(noRepeatsCommon.contains(datagenre[destinationIndex].get(x).toString())))
+            {
+                noRepeatsCommon.add(datagenre[destinationIndex].get(x).toString());
+                System.out.println(datagenre[destinationIndex].get(x).toString() + "\n");
+            }
           }
             
-        return Reponse;
+   
         }
-        return Reponse;
+
+    }
+    
+    public String GenreAverage(String Genre)
+    {
+        String Response = null;
+        double Count = 0;
+        double Total = 0;
+        double Average =0;
+        
+        for(int x = 0; x< indexGenre.length; x++)
+        {
+            for(int y = 0; y < datagenre[x].size(); y++)
+            {
+               if(datagenre[x].get(y).getGenre().equals(Genre))
+               {
+               Total = Total + Double.parseDouble(datagenre[x].get(y).getRating());
+               Count++;
+               }
+            }
+        }
+        Average = Total/Count;
+        
+        Response = "Genre = " + Genre + " Average Score = " + Average;
+        return Response;
     }
     
     public int size(){
