@@ -14,10 +14,19 @@ public class HashTableGeneral{
  
     private int size;
 
+    /**
+     *
+     */
     public final LinkedList<Movie>[] data;
     
+    /**
+     *
+     */
     public final ArrayList<String> noRepeatsCommon = new ArrayList();
     
+    /**
+     *
+     */
     public HashTableGeneral(){
 
         data = (LinkedList<Movie>[]) new LinkedList[11];
@@ -25,6 +34,11 @@ public class HashTableGeneral{
         size = 0;
     }
     
+    /**
+     *
+     * @param value
+     * @return
+     */
     public Movie put(Movie value){
 
         int hash = value.MyhashCode();
@@ -52,6 +66,11 @@ public class HashTableGeneral{
         }
     }
     
+    /**
+     *
+     * @param value
+     * @return Movies
+     */
     public Movie get(Movie value){
         int hash = value.MyhashCode();;
         
@@ -65,29 +84,20 @@ public class HashTableGeneral{
         return null;
     }
     
+
     
-    public String DisplayCommonContents(int index)
-    {
-        String Reponse = null;
-        int destinationIndex = index;
-        if(data[destinationIndex] != null){
-          for(int x = 0; x< data[destinationIndex].size(); x++)
-          {
-            Reponse = Reponse + " Movies in Slot " + index + " = " + data[destinationIndex].get(x).toString() + "\n";
-          }
-            
-        return Reponse;
-        }
-        return Reponse;
-    }
-    
+    /**
+     *
+     */
     public void ScoreSort()
     {
         
     }
     
-    
-    
+    /**
+     *
+     * @return size
+     */
     public int size(){
 
         return size;

@@ -55,7 +55,7 @@ public class Movie implements Comparable<Movie>{
     public void setRating(String Rating) {
         this.Rating = Rating;
     }
-
+//Diffent hash's for the hashTablles
     public int MyhashCode() 
     {
         Double HashRate = Double.parseDouble(this.getRating());

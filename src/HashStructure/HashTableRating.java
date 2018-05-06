@@ -16,12 +16,24 @@ import java.util.LinkedList;
 public class HashTableRating {
  private int size;
 
+    /**
+     *
+     */
     public final LinkedList<Movie>[] datarate;
     
+    /**
+     *
+     */
     public final String[] indexRate = new String[100];
     
+    /**
+     *
+     */
     public final ArrayList<String> noRepeatsCommon = new ArrayList();
     
+    /**
+     *
+     */
     public HashTableRating(){
 
         datarate = (LinkedList<Movie>[]) new LinkedList[100];
@@ -33,6 +45,11 @@ public class HashTableRating {
         size = 0;
     }
     
+    /**
+     *
+     * @param value
+     * @return Movies added to Hash
+     */
     public Movie put(Movie value){
 
          int hash = value.MyhashCodeRate(indexRate);
@@ -60,8 +77,12 @@ public class HashTableRating {
         }
     }
     
-    
-        public Movie Displayget(Movie value){
+    /**
+     *
+     * @param value
+     * @return Special Display For Movies
+     */
+    public Movie Displayget(Movie value){
         int hash = value.MyhashCodeRate(indexRate);
         
 
@@ -74,8 +95,15 @@ public class HashTableRating {
         return null;
     }
       
-    
-public void ScoreGrouping(int start, int end, Movie value)
+    /**
+     *
+     * @param start
+     * @param end
+     * @param value
+     * 
+     */
+    /*
+    public void ScoreGrouping(int start, int end, Movie value)
     {
         int hash = value.MyhashCodeRate(indexRate);
         double MovieRating = Double.parseDouble(value.getRating());
@@ -99,6 +127,10 @@ public void ScoreGrouping(int start, int end, Movie value)
 
     }
    
+    /**
+     *
+     * @return size
+     */
     public int size(){
 
         return size;

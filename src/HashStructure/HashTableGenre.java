@@ -13,14 +13,29 @@ public class HashTableGenre {
     
     private int size;
 
+    /**
+     *
+     */
     public final LinkedList<Movie>[] datagenre;
     
+    /**
+     *
+     */
     public final String[] indexGenre = new String[13];
     
+    /**
+     *
+     */
     public final ArrayList<String> SortRating = new ArrayList();
     
+    /**
+     *
+     */
     public final ArrayList<String> noRepeatsCommon = new ArrayList();
     
+    /**
+     *
+     */
     public HashTableGenre(){
 
         datagenre = (LinkedList<Movie>[]) new LinkedList[41];
@@ -32,6 +47,11 @@ public class HashTableGenre {
         size = 0;
     }
     
+    /**
+     *
+     * @param value
+     * @return adds to HashTable
+     */
     public Movie put(Movie value){
 
          int hash = value.MyhashCodeGenre(indexGenre);
@@ -59,6 +79,11 @@ public class HashTableGenre {
         }
     }
     
+    /**
+     *
+     * @param value
+     * @return Movies
+     */
     public Movie get(Movie value){
         
         int hash = value.MyhashCodeGenre(indexGenre);
@@ -72,7 +97,12 @@ public class HashTableGenre {
         return null;
     }
     
-        public Movie Displayget(Movie value){
+    /**
+     *
+     * @param value
+     * @return Special Display for Movies
+     */
+    public Movie Displayget(Movie value){
         int hash = value.MyhashCodeGenre(indexGenre);
         
 
@@ -85,6 +115,11 @@ public class HashTableGenre {
         return null;
     }
     
+    /**
+     *
+     * @param index
+     * Display Common Genre Movies
+     */
     public void DisplayCommonContents(int index)
     {
         int destinationIndex = index;
@@ -103,6 +138,11 @@ public class HashTableGenre {
 
     }
     
+    /**
+     *
+     * @param Genre
+     * @return
+     */
     public String GenreAverage(String Genre)
     {
         String Response = null;
@@ -127,7 +167,11 @@ public class HashTableGenre {
         return Response;
     }
     
-     public void GenreScoreSort(String Genre)
+    /**
+     *
+     * @param Genre
+     */
+    public void GenreScoreSort(String Genre)
     {
         for(int x = 0; x< indexGenre.length; x++)
         {
@@ -149,6 +193,10 @@ public class HashTableGenre {
   
     }
      
+    /**
+     *
+     * @param value
+     */
     public void DisplayRecommendations(Movie value)
     {
         String reccomendation1 = "No Recommendation Found";
@@ -192,6 +240,10 @@ public class HashTableGenre {
        }
     }
     
+    /**
+     *
+     * @return
+     */
     public int size(){
 
         return size;
