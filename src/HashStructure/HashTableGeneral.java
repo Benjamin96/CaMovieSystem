@@ -14,13 +14,13 @@ public class HashTableGeneral{
  
     private int size;
 
-    private final LinkedList<Movie>[] data;
+    public final LinkedList<Movie>[] data;
     
     public final ArrayList<String> noRepeatsCommon = new ArrayList();
     
     public HashTableGeneral(){
 
-        data = (LinkedList<Movie>[]) new LinkedList[41];
+        data = (LinkedList<Movie>[]) new LinkedList[11];
         
         size = 0;
     }
@@ -46,7 +46,7 @@ public class HashTableGeneral{
         }
         else{            
 
-            data[destinationIndex].addLast(value);
+            data[destinationIndex].add(value);
 
             return null;
         }
@@ -79,6 +79,11 @@ public class HashTableGeneral{
         return Reponse;
         }
         return Reponse;
+    }
+    
+    public void ScoreSort()
+    {
+        
     }
     
     

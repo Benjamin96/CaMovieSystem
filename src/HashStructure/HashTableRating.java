@@ -73,6 +73,7 @@ public class HashTableRating {
         }
         return null;
     }
+      
     
 public void ScoreGrouping(int start, int end, Movie value)
     {
@@ -84,7 +85,7 @@ public void ScoreGrouping(int start, int end, Movie value)
         if(datarate[destinationIndex] != null){
          for(int x =0; x< datarate[destinationIndex].size(); x++)
          {  
-                if(start <= MovieRating && end >= MovieRating)
+                if((start <= MovieRating) && (end >= MovieRating))
                 {
                   if(!(noRepeatsCommon.contains(datarate[destinationIndex].get(x).toString())))
                     {

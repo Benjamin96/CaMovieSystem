@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 
@@ -15,7 +16,7 @@ import java.util.Scanner;
  * @author Ben
  */
 public class DataAnalysis {
-     public static void main(String[] args) 
+    public static void main(String[] args) 
     {
         Scanner sc = new Scanner(System.in);
         
@@ -34,14 +35,17 @@ public class DataAnalysis {
  
                     String[] lineArray = line.split(",");
                     MovieList.add(new Movie(lineArray[0], lineArray[1], lineArray[2], lineArray[3]));
+
+
+            }
+            
                     for(int x = 0; x< MovieList.size(); x++)
                     {
                         MovieHashTable.put(MovieList.get(x));
                         GenresHashTable.put(MovieList.get(x));
                         RateHashTable.put(MovieList.get(x));
                     }
-
-            }
+            
             Boolean check = false;
             while(check.equals(false)){
             System.out.println("1) Check all" + "\n" +
@@ -61,16 +65,17 @@ public class DataAnalysis {
                  
              System.out.println("\n");
             System.out.println("--------Checking Get-------");
-            for(int x = 0; x< MovieList.size(); x++)
+            for(int x = 0; x< MovieHashTable.data.length; x++)
                {
-                   if(!(MovieHashTable.get(MovieList.get(x)).equals(null)))
-                    {
-                        System.out.println("= " + MovieHashTable.get(MovieList.get(x)) + "\n");
-                    }
-                   else
-                   {
-                       System.out.println("The imported file does not support this functionality");
-                   }
+                   System.out.println("Slot " + x);
+
+                        Iterator<Movie> itr = MovieHashTable.data[x].iterator();
+                        while(itr.hasNext())
+                        {
+                            System.out.println(itr.next() + "\n");
+                        }
+
+
                }
             break;
             
@@ -116,12 +121,28 @@ public class DataAnalysis {
              case "4":
              System.out.println("\n");
              System.out.println("-------Movies in a particular genre (in order of their score------");
-             for(int x = 0; x < GenresHashTable.indexGenre.length; x++)
-             {
-               String Genre = GenresHashTable.indexGenre[x];
-               
-               GenresHashTable.GenreScoreSort(Genre);
-             }
+                
+             System.out.println("Enter Genre name");
+             String Genre = sc.nextLine();
+             Genre = Genre.toLowerCase();
+             Movie Fed = new Movie();
+             for(int x = 0; x< MovieHashTable.data.length; x++)
+               {
+
+
+                        Iterator<Movie> itr = MovieHashTable.data[x].iterator();
+                        while(itr.hasNext())
+                        {
+                            Fed = itr.next();
+                            if(Fed.getGenre().toLowerCase().contains(Genre))
+                            {
+                            System.out.println(Fed + "\n");
+                            }
+                        }
+
+                   
+               }
+             
              break;
              
              case "5":
@@ -131,47 +152,40 @@ public class DataAnalysis {
              
              System.out.println("(0-3)" + "\n");
              
-             for(int x = 0; x < RateHashTable.size(); x++)
-             {
-                 RateHashTable.ScoreGrouping(0, 3, MovieList.get(x));
-             }
              
+             PrintRange(0, 3, MovieHashTable);
+                          
              System.out.println("(4-5)" + "\n");
              
-             for(int x = 0; x < RateHashTable.size(); x++)
-             {
-                 RateHashTable.ScoreGrouping(4, 5, MovieList.get(x));
-             }
+             PrintRange(4, 5, MovieHashTable);
              
              System.out.println("(6-8)" + "\n");
              
-             for(int x = 0; x < RateHashTable.size(); x++)
-             {
-                 RateHashTable.ScoreGrouping(6, 8, MovieList.get(x));
-             }
+             PrintRange(6, 8, MovieHashTable);
              
              System.out.println("(9-10)" + "\n");
              
-             for(int x = 0; x < RateHashTable.size(); x++)
-             {
-                 RateHashTable.ScoreGrouping(9, 10, MovieList.get(x));
-             }
+             PrintRange(9, 10, MovieHashTable);
              break;
              
              case "6":
                  System.out.println("Enter Movie name");
                  String name = sc.nextLine();
-                 
+                 Boolean Found = false;
+                 name = name.toLowerCase();
                  for(int x = 0; x< MovieList.size(); x++)
                  {
-                     if(MovieList.get(x).getTitle().equals(name))
+                     if(MovieList.get(x).getTitle().toLowerCase().contains(name))
                      {
                          GenresHashTable.DisplayRecommendations(MovieList.get(x));
+                         Found = true;
                      }
-                     else
-                     {
-                         System.out.println("Please enter a valid name on List as " + name + " was not found on HashTable" );
-                     }
+                     
+                     
+                 }
+                 if(!Found)
+                 {
+                     System.out.println("Couldnt find that movie");
                  }
                  
              break;
@@ -186,6 +200,25 @@ public class DataAnalysis {
         }
     
     }
+     
+     public static void PrintRange(int start, int end, HashTableGeneral MovieHashTable)
+     {
+         Movie Fed = new Movie();
+         for(int x = start; (x<= end) && (x < MovieHashTable.data.length); x++)
+               {
+
+                        Iterator<Movie> itr = MovieHashTable.data[x].iterator();
+                        while(itr.hasNext())
+                        {
+                            Fed = itr.next();
+                            
+                            System.out.println(Fed + "\n");
+                            
+                        }
+
+                    
+               }
+     }
 }
 
 

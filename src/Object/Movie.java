@@ -12,7 +12,10 @@ public class Movie implements Comparable<Movie>{
     private String Age;
     private String Rating;
 
+    public Movie() {
+    }
 
+    
 
     public Movie(String Title, String Genre, String Age, String Rating) {
         this.Title = Title;

@@ -154,6 +154,7 @@ public class HashTableGenre {
         String reccomendation1 = "No Recommendation Found";
         String reccomendation2 = "No Recommendation Found";
         String reccomendation3 = "No Recommendation Found";
+        Boolean Found = false;
         
        for(int x = 0; x< indexGenre.length; x++)
         {
@@ -162,23 +163,33 @@ public class HashTableGenre {
                if(value.getGenre().equals(datagenre[x].get(y).getGenre()))
                {
                    reccomendation1 = datagenre[x].get(y).toString();
+                   Found = true;
                }
                if(value.getAge().equals(datagenre[x].get(y).getAge()))
                {
                    reccomendation2 = datagenre[x].get(y).toString();
+                     Found = true;
                }
                if(value.getRating().equals(datagenre[x].get(y).getRating()))
                {
                    reccomendation3 = datagenre[x].get(y).toString();
+                     Found = true;
                }
                
             }
             
         }
+       if(Found)
+       {
         System.out.println("Picked: " + value.toString() + "\n");
         System.out.println("Recommendation1: " + reccomendation1 + "\n" +
                 "Recommendation2: " + reccomendation2 + "\n" +
                 "Recommendation3: " + reccomendation3 + "\n");
+       }
+       else
+       {
+           System.out.println("Nothing to Reccomend");
+       }
     }
     
     public int size(){
