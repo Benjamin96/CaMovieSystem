@@ -2,6 +2,7 @@ package HashStructure;
 
 import Object.Movie;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -15,6 +16,8 @@ public class HashTableGenre {
     public final LinkedList<Movie>[] datagenre;
     
     public final String[] indexGenre = new String[13];
+    
+    public final ArrayList<String> SortRating = new ArrayList();
     
     public final ArrayList<String> noRepeatsCommon = new ArrayList();
     
@@ -40,7 +43,7 @@ public class HashTableGenre {
             LinkedList<Movie> list = new LinkedList();
 
             list.add(value);
-
+           
             datagenre[destinationIndex] = list;
             System.out.println(" Genres stored in slot " + destinationIndex) ;
             
@@ -57,9 +60,9 @@ public class HashTableGenre {
     }
     
     public Movie get(Movie value){
+        
         int hash = value.MyhashCodeGenre(indexGenre);
         
-
         int destinationIndex = hash;
         
         if(datagenre[destinationIndex] != null){
@@ -122,6 +125,59 @@ public class HashTableGenre {
         
         Response = "Genre = " + Genre + " Average Score = " + Average;
         return Response;
+    }
+    
+     public void GenreScoreSort(String Genre)
+    {
+        for(int x = 0; x< indexGenre.length; x++)
+        {
+            for(int y = 0; y < datagenre[x].size(); y++)
+            {
+               if(datagenre[x].get(y).getGenre().equals(Genre))
+               {
+                if(!(SortRating.contains(datagenre[x].get(y).toString())))
+                {
+                   SortRating.add(datagenre[x].get(y).toString());
+                   Collections.sort(SortRating);
+                   System.out.println("Genre " + " " + datagenre[x].get(y).toString() + "\n");
+                }
+               }
+            }
+            
+   
+        }
+  
+    }
+     
+    public void DisplayRecommendations(Movie value)
+    {
+        String reccomendation1 = "";
+        String reccomendation2 = "";
+        String reccomendation3 = "";
+        
+       for(int x = 0; x< indexGenre.length; x++)
+        {
+            for(int y = 0; y < datagenre[x].size(); y++)
+            {
+               if(value.getGenre().equals(datagenre[x].get(y).getGenre()))
+               {
+                   reccomendation1 = datagenre[x].get(y).toString();
+               }
+               if(value.getAge().equals(datagenre[x].get(y).getAge()))
+               {
+                   reccomendation2 = datagenre[x].get(y).toString();
+               }
+               if(value.getRating().equals(datagenre[x].get(y).getRating()))
+               {
+                   reccomendation3 = datagenre[x].get(y).toString();
+               }
+            }
+            
+        }
+        System.out.println("Picked: " + value.toString() + "\n");
+        System.out.println("Recommendation1: " + reccomendation1 + "\n" +
+                "Recommendation2: " + reccomendation2 + "\n" +
+                "Recommendation3: " + reccomendation3 + "\n");
     }
     
     public int size(){

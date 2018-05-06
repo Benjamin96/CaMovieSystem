@@ -3,10 +3,11 @@ package HashStructure;
 
 import java.util.LinkedList;
 import Object.Movie;
+import java.util.ArrayList;
 /**
  *
  * @author Ben
- * @param <Movie>
+ *
  * 
  */
 public class HashTableGeneral{
@@ -15,9 +16,11 @@ public class HashTableGeneral{
 
     private final LinkedList<Movie>[] data;
     
+    public final ArrayList<String> noRepeatsCommon = new ArrayList();
+    
     public HashTableGeneral(){
 
-        data = (LinkedList<Movie>[]) new LinkedList[11];
+        data = (LinkedList<Movie>[]) new LinkedList[41];
         
         size = 0;
     }
@@ -77,6 +80,8 @@ public class HashTableGeneral{
         }
         return Reponse;
     }
+    
+    
     
     public int size(){
 

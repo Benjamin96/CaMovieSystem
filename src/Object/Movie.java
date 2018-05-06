@@ -6,7 +6,7 @@ import java.util.Objects;
  *
  * @author Ben
  */
-public class Movie {
+public class Movie implements Comparable<Movie>{
     private String Title;
     private String Genre;
     private String Age;
@@ -78,8 +78,25 @@ public class Movie {
         return 0;
     }
     
+    public int MyhashCodeRate(String[] Array)
+    {
+        for(int x = 0; x< Array.length; x++)
+        {
+            if(Array[x].equals(""))
+            {
+                Array[x] = this.getRating();
+                return x;
+            }
+                
+            else if(Array[x].equals(this.getRating()))
+            {
+                return x;
+            }
+        }
+        return 0;
+    }
     
-
+    
   
     @Override
     public boolean equals(Object obj) {
@@ -108,6 +125,8 @@ public class Movie {
         return true;
     }
     
+    
+    @Override
     public int compareTo(Movie o) {
         
         String title = o.getTitle();
