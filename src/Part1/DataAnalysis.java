@@ -63,9 +63,17 @@ public class DataAnalysis {
             System.out.println("--------Checking Get-------");
             for(int x = 0; x< MovieList.size(); x++)
                {
-                   System.out.println("= " + MovieHashTable.get(MovieList.get(x)) + "\n");
+                   if(!(MovieHashTable.get(MovieList.get(x)).equals(null)))
+                    {
+                        System.out.println("= " + MovieHashTable.get(MovieList.get(x)) + "\n");
+                    }
+                   else
+                   {
+                       System.out.println("The imported file does not support this functionality");
+                   }
                }
             break;
+            
              case "2":
             System.out.println("\n");
             System.out.println("-------Most Common Genre------");
@@ -94,7 +102,15 @@ public class DataAnalysis {
              {
              String Genre = GenresHashTable.indexGenre[x];
              
-             System.out.println(GenresHashTable.GenreAverage(Genre));
+              if(!(GenresHashTable.GenreAverage(Genre).equals(null)))
+                {
+                  System.out.println(GenresHashTable.GenreAverage(Genre));
+                }
+              else
+              {
+                System.out.println("The file imported does not support this functionality");
+              }
+              
              }
             break;
              case "4":
@@ -152,11 +168,16 @@ public class DataAnalysis {
                      {
                          GenresHashTable.DisplayRecommendations(MovieList.get(x));
                      }
+                     else
+                     {
+                         System.out.println("Please enter a valid name on List as " + name + " was not found on HashTable" );
+                     }
                  }
                  
              break;
              
              case "7":
+                 System.out.println("GoodBye See you Soon");
              check = true;
              break;
              }

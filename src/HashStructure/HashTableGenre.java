@@ -151,9 +151,9 @@ public class HashTableGenre {
      
     public void DisplayRecommendations(Movie value)
     {
-        String reccomendation1 = "";
-        String reccomendation2 = "";
-        String reccomendation3 = "";
+        String reccomendation1 = "No Recommendation Found";
+        String reccomendation2 = "No Recommendation Found";
+        String reccomendation3 = "No Recommendation Found";
         
        for(int x = 0; x< indexGenre.length; x++)
         {
@@ -171,6 +171,7 @@ public class HashTableGenre {
                {
                    reccomendation3 = datagenre[x].get(y).toString();
                }
+               
             }
             
         }
