@@ -34,10 +34,16 @@ public class DataAnalysis {
             while ((line = br.readLine()) != null) {
  
                     String[] lineArray = line.split(",");
-                    MovieList.add(new Movie(lineArray[0], lineArray[1], lineArray[2], lineArray[3]));
+                    if("".equals(lineArray[0]) || "".equals(lineArray[1]) || lineArray[2].equals("") || lineArray[3].equals("") )
+                     {
+                         
+                     } else {
+                            MovieList.add(new Movie(lineArray[0], lineArray[1], lineArray[2], lineArray[3]));
+                            MovieList.add(new Movie(lineArray[0], lineArray[1], lineArray[2], lineArray[3]));
+                            }
 
 
-            }
+                     }
             
                     for(int x = 0; x< MovieList.size(); x++)
                     {
